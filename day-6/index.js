@@ -16,19 +16,32 @@ function readFilePathSync(filePath) {
 }
 
 const data = readFilePathSync(actualDataPath) || readFilePathSync(sampleDataPath)
-// console.log(JSON.stringify(data, null, 2)) // see "real values -> not transformed by the Terminal"
-// console.log(data)
-const groups = data.split("\n\n") // group by double line break
-// console.log(groups)
 
+const groups = data.split("\n\n") // group by double line break
+
+// PART 1
 const uniqueGroup = groups.map(group => {
 	return group
 		.replace(/\n/g, "") // ignore line breaks in each group
-		.split("")
-		.filter((item, i, arr) => arr.indexOf(item) === i)
-		.join("")
+		.split("") // make an array
+		.filter((x, i, arr) => arr.indexOf(x) === i) // include if first instance of x
+		.join("") // make a string again
 })
-// console.log("uniqueGroupe", uniqueGroup)
+// Set would be an idea as well -> all values are unique there
 
-const totalCount = uniqueGroup.join("").length
-console.log("total count: ", totalCount)
+console.log("sol. part. 1: ", uniqueGroup.join("").length)
+
+// PART 2
+const subGroups = groups.map(x => x.split("\n"))
+
+const p2 = subGroups
+	.map(subGroup => {
+		subGroupUniqueLetters = subGroup
+			.join("")
+			.split("")
+			.filter((x, i, arr) => arr.indexOf(x) === i)
+		return subGroupUniqueLetters.filter(x => subGroup.every(y => y.includes(x)))
+	})
+	.flat()
+
+console.log("sol. part. 2:", p2.join("").length)
