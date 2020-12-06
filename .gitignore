@@ -1,3 +1,6 @@
+# exclude real data
+actual.txt
+
 # MacOS
 .DS_Store
 
