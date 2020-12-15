@@ -1,6 +1,5 @@
 /* read actual or sample data */
 const fs = require("fs")
-const { start } = require("repl")
 
 const actualDataPath = `${process.cwd()}/day-15/actual.txt`
 const sampleDataPath = `${process.cwd()}/day-15/sample.txt`
