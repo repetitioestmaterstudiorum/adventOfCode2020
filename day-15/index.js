@@ -24,24 +24,17 @@ function logSeparator() {
 }
 logSeparator()
 
-/* actual exercise */
+/* PART 1 */
 const max = 2020
 const startSequency = data.split(",").map(x => Number(x))
-// 0,3,6
-// 0,3,6,0,3,3,1,0,4,0,2,0,2,2,1,8,0
-let spokenNumbers = startSequency
-console.log(spokenNumbers)
 
+let spokenNumbers = startSequency
 for (let i = startSequency.length + 1; i <= max; i++) {
-	// console.log("i", i)
-	// console.log("spokenNumbers", spokenNumbers)
 	const reverseSpokenNumbers = [...spokenNumbers].reverse()
 	// last number in sequence
 	const latestNumber = reverseSpokenNumbers[0]
-	// console.log("latestNumber", latestNumber)
 	// find last instance of number
 	const lastInstance = reverseSpokenNumbers.slice(1).indexOf(latestNumber)
-	// console.log("lastInstance", lastInstance)
 	// if number not occurred yet, add 0, else find distance and add it
 	if (lastInstance === -1) {
 		spokenNumbers.push(0)
