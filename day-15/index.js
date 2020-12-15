@@ -24,21 +24,19 @@ const startSequency = data.split(",").map(x => Number(x))
 function logSpokenNumberAtPosition(position) {
 	let spokenNumbers = startSequency
 	for (let i = startSequency.length + 1; i <= position; i++) {
-		const reverseSpokenNumbers = spokenNumbers.slice().reverse()
-		// last number in sequence
-		const latestNumber = reverseSpokenNumbers[0]
-		// find last instance of number
-		const lastInstance = reverseSpokenNumbers.slice(1).indexOf(latestNumber)
+		const copyOfSpokenNumbers = [...spokenNumbers]
+		const lastNumber = copyOfSpokenNumbers.pop()
+		const lastInstanceOfLastNumber = copyOfSpokenNumbers.lastIndexOf(lastNumber)
 		// if number not occurred yet, add 0, else find distance and add it
-		if (lastInstance === -1) {
+		if (lastInstanceOfLastNumber === -1) {
 			spokenNumbers.push(0)
 		} else {
-			spokenNumbers.push(lastInstance + 1)
+			spokenNumbers.push(spokenNumbers.length - 1 - lastInstanceOfLastNumber)
 		}
-		if (i === position) console.log("result: ", spokenNumbers.slice().reverse()[0])
+		if (i === position) console.log("result: ", spokenNumbers.pop())
 	}
 }
 logSpokenNumberAtPosition(2020)
 
 /* PART 2 */
-// logSpokenNumberAtPosition(30000000)
+logSpokenNumberAtPosition(30000000)
