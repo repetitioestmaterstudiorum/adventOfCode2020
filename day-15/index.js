@@ -18,28 +18,27 @@ function readFilePathSync(filePath) {
 
 const data = readFilePathSync(actualDataPath) || readFilePathSync(sampleDataPath)
 
-// a separator to organize the console output
-function logSeparator() {
-	console.log("***********")
-}
-logSeparator()
-
-/* PART 1 */
-const max = 2020
 const startSequency = data.split(",").map(x => Number(x))
 
-let spokenNumbers = startSequency
-for (let i = startSequency.length + 1; i <= max; i++) {
-	const reverseSpokenNumbers = [...spokenNumbers].reverse()
-	// last number in sequence
-	const latestNumber = reverseSpokenNumbers[0]
-	// find last instance of number
-	const lastInstance = reverseSpokenNumbers.slice(1).indexOf(latestNumber)
-	// if number not occurred yet, add 0, else find distance and add it
-	if (lastInstance === -1) {
-		spokenNumbers.push(0)
-	} else {
-		spokenNumbers.push(lastInstance + 1)
+/* PART 1 */
+function logSpokenNumberAtPosition(position) {
+	let spokenNumbers = startSequency
+	for (let i = startSequency.length + 1; i <= position; i++) {
+		const reverseSpokenNumbers = spokenNumbers.slice().reverse()
+		// last number in sequence
+		const latestNumber = reverseSpokenNumbers[0]
+		// find last instance of number
+		const lastInstance = reverseSpokenNumbers.slice(1).indexOf(latestNumber)
+		// if number not occurred yet, add 0, else find distance and add it
+		if (lastInstance === -1) {
+			spokenNumbers.push(0)
+		} else {
+			spokenNumbers.push(lastInstance + 1)
+		}
+		if (i === position) console.log("result: ", spokenNumbers.slice().reverse()[0])
 	}
-	if (i === max) console.log("result: ", [...spokenNumbers].reverse()[0])
 }
+logSpokenNumberAtPosition(2020)
+
+/* PART 2 */
+// logSpokenNumberAtPosition(30000000)
