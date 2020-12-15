@@ -1,7 +1,7 @@
 /* read actual or sample data */
 const fs = require("fs")
 
-const actualDataPath = `${process.cwd()}/day-15/actual.txt`
+const actualDataPath = `${process.cwd()}/day-15/actuals.txt`
 const sampleDataPath = `${process.cwd()}/day-15/sample.txt`
 
 function readFilePathSync(filePath) {
@@ -24,14 +24,14 @@ const startSequency = data.split(",").map(x => Number(x))
 function logSpokenNumberAtPosition(position) {
 	let spokenNumbers = startSequency
 	for (let i = startSequency.length + 1; i <= position; i++) {
-		const copyOfSpokenNumbers = [...spokenNumbers]
-		const lastNumber = copyOfSpokenNumbers.pop()
-		const lastInstanceOfLastNumber = copyOfSpokenNumbers.lastIndexOf(lastNumber)
+		const length = spokenNumbers.length
+		const lastNumber = spokenNumbers[length - 1]
+		const lastInstanceOfLastNumber = spokenNumbers.slice(0, length - 1).lastIndexOf(lastNumber)
 		// if number not occurred yet, add 0, else find distance and add it
 		if (lastInstanceOfLastNumber === -1) {
 			spokenNumbers.push(0)
 		} else {
-			spokenNumbers.push(spokenNumbers.length - 1 - lastInstanceOfLastNumber)
+			spokenNumbers.push(length - 1 - lastInstanceOfLastNumber)
 		}
 		if (i === position) console.log("result: ", spokenNumbers.pop())
 	}
