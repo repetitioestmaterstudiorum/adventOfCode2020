@@ -18,25 +18,47 @@ function readFilePathSync(filePath) {
 
 const data = readFilePathSync(actualDataPath) || readFilePathSync(sampleDataPath)
 
-const startSequence = data.split(",").map(x => Number(x))
-const startSequenceMinusLast = startSequence.slice(0, startSequence.length - 1)
-let lastNumber = startSequence.pop()
-
 /* PART 1 */
-function logSpokenNumberAtPosition(position) {
-	let spokenNumbers = startSequenceMinusLast
-	for (let i = spokenNumbers.length + 1; i <= position; i++) {
-		const lastInstanceOfLastNumber = spokenNumbers.lastIndexOf(lastNumber)
-		spokenNumbers.push(lastNumber)
-		if (lastInstanceOfLastNumber === -1) {
+// function logSpokenNumberAtPosition(data, position) {
+// 	const startSequence = data.split(",").map(x => Number(x))
+// 	const startSequenceMinusLast = startSequence.slice(0, startSequence.length - 1)
+// 	let lastNumber = startSequence[startSequence.length - 1]
+// 	let spokenNumbers = startSequenceMinusLast
+// 	for (let i = startSequence.length; i <= position; i++) {
+// 		console.log("i", i)
+// 		console.log("lastNumber", lastNumber)
+// 		console.log("spokenNumbers", spokenNumbers)
+// 		const lastInstanceOfLastNumber = spokenNumbers.lastIndexOf(lastNumber)
+// 		console.log("lastInstanceOfLastNumber", lastInstanceOfLastNumber)
+// 		spokenNumbers.push(lastNumber)
+// 		if (lastInstanceOfLastNumber === -1) {
+// 			console.log("add: ", lastNumber)
+// 			lastNumber = 0
+// 		} else {
+// 			console.log("add: ", spokenNumbers.length - 1 - lastInstanceOfLastNumber)
+// 			lastNumber = spokenNumbers.length - 1 - lastInstanceOfLastNumber
+// 		}
+// 		if (i === position) console.log("result: ", spokenNumbers.pop())
+// 	}
+// }
+function logSpokenNumberAtPosition(data, position) {
+	const startSequence = data.split(",")
+	const startSequenceMinusLast = startSequence.slice(0, startSequence.length - 1)
+	let obj = {}
+	startSequenceMinusLast.forEach((x, i) => (obj[x] = i + 1))
+	let lastNumber = startSequence[startSequence.length - 1]
+	for (let i = startSequence.length; i <= position; i++) {
+		const lastInstanceOfLastNumber = obj[lastNumber]
+		obj[lastNumber] = i
+		if (i === position) return console.log("result: ", lastNumber)
+		if (lastInstanceOfLastNumber === undefined) {
 			lastNumber = 0
 		} else {
-			lastNumber = spokenNumbers.length - 1 - lastInstanceOfLastNumber
+			lastNumber = i - lastInstanceOfLastNumber
 		}
-		if (i === position) console.log("result: ", spokenNumbers.pop())
 	}
 }
-logSpokenNumberAtPosition(2020)
+// logSpokenNumberAtPosition(data, 2020)
 
 /* PART 2 */
-logSpokenNumberAtPosition(30000000)
+// logSpokenNumberAtPosition(data, 30000000)
