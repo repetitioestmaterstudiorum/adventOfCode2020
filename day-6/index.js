@@ -1,7 +1,7 @@
 import readFilePathSync from "../tools/index.js"
 
 /* get the data */
-const actualDataPath = `${process.cwd()}/day-6/actuall.txt`
+const actualDataPath = `${process.cwd()}/day-6/actual.txt`
 const sampleDataPath = `${process.cwd()}/day-6/sample.txt`
 const data = readFilePathSync(actualDataPath) || readFilePathSync(sampleDataPath)
 
