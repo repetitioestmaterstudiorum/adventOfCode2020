@@ -1,20 +1,8 @@
-/* read actual or sample data */
-const fs = require("fs")
+import readFilePathSync from "../tools/index.js"
 
+/* read actual or sample data */
 const actualDataPath = `${process.cwd()}/day-15/actual.txt`
 const sampleDataPath = `${process.cwd()}/day-15/sample.txt`
-
-function readFilePathSync(filePath) {
-	try {
-		console.log(`Reading ${filePath}`)
-		const buffer = fs.readFileSync(filePath)
-		const contents = buffer.toString()
-		if (!contents) console.log("File empty ...")
-		return contents
-	} catch (err) {
-		console.error(err.message)
-	}
-}
 
 const data = readFilePathSync(actualDataPath) || readFilePathSync(sampleDataPath)
 
@@ -63,5 +51,5 @@ console.timeEnd("logSpokenNumberAtPositionRefactored")
 
 /* PART 2 */
 console.time("logSpokenNumberAtPositionRefactored")
-logSpokenNumberAtPositionRefactored(data, 300000)
+// logSpokenNumberAtPositionRefactored(data, 30000000)
 console.timeEnd("logSpokenNumberAtPositionRefactored")

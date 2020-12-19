@@ -1,19 +1,8 @@
-const fs = require("fs")
+import readFilePathSync from "../tools/index.js"
 
+/* get the data */
 const actualDataPath = `${process.cwd()}/day-6/actual.txt`
 const sampleDataPath = `${process.cwd()}/day-6/sample.txt`
-
-function readFilePathSync(filePath) {
-	try {
-		console.log(`Reading ${filePath}`)
-		const buffer = fs.readFileSync(filePath)
-		const contents = buffer.toString()
-		if (!contents) console.log("File empty ...")
-		return contents
-	} catch (err) {
-		console.error(err)
-	}
-}
 
 const data = readFilePathSync(actualDataPath) || readFilePathSync(sampleDataPath)
 
@@ -36,7 +25,7 @@ const subGroups = groups.map(x => x.split("\n"))
 
 const p2 = subGroups
 	.map(subGroup => {
-		subGroupUniqueLetters = subGroup
+		const subGroupUniqueLetters = subGroup
 			.join("")
 			.split("")
 			.filter((x, i, arr) => arr.indexOf(x) === i)
