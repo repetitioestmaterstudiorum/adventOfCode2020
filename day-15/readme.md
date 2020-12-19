@@ -4,6 +4,11 @@
 
 https://adventofcode.com/2020/day/15
 
+## topics
+
+-   JavaScript Data Structures (Structural Data Types): Array vs Object vs Map performance
+-   The Van Eck Sequence
+
 ## description
 
 --- Day 15: Rambunctious Recitation ---
